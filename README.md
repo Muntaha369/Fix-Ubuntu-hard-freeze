@@ -27,18 +27,22 @@ System freezes on Intel-based laptops (like the Dell Latitude 7490) are often ca
    ```bash
    sudo nano /etc/default/grub
 2. Locate the following line:
+   ```bash
    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
 
 3. Change it to:
+   ```bash
    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi=force i915.enable_psr=0 i915.enable_dc=0"
 
-5. Save and Exit:
+4. Save and Exit:
+   ```bash
    Ctrl + o then Ctrl + x
 
-6. Apply Changes: Run the following command:
- sudo update-grub
+5. Apply Changes:
+   ```bash
+    sudo update-grub
 
-7. Reboot your laptop to complete the fix.
+6. Reboot your laptop to complete the fix.
 
 Now hopefully it Should be working
 
