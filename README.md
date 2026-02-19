@@ -26,3 +26,26 @@ System freezes on Intel-based laptops (like the Dell Latitude 7490) are often ca
 1. Open your terminal and run:
    ```bash
    sudo nano /etc/default/grub
+2. Locate the following line:
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+
+3. Change it to:
+   GRUB_CMDLINE_LINUX_DEFAULT="quiet splash acpi=force i915.enable_psr=0 i915.enable_dc=0"
+
+5. Save and Exit:
+   Ctrl + o then Ctrl + x
+
+6. Apply Changes: Run the following command:
+ sudo update-grub
+
+7. Reboot your laptop to complete the fix.
+
+Now hopefully it Should be working
+
+Why combine these parameters?
+
+ acpi=force: Ensures the motherboard follows Ubuntu's instructions for power-down and rebooting.
+
+ i915.enable_psr=0: Disables Panel Self Refresh. This stops the graphics driver from trying to "save power" on the screen—the primary cause of freezes on the 7490 model.
+
+ i915.enable_dc=0: Disables Deep Power Down states for the GPU that can cause the system to lock up.
